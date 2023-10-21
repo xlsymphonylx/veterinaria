@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\DateController;
+use App\Http\Controllers\DiseaseController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\TreatmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +26,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 Route::middleware(['auth'])->group(function () {
     Route::resource('patients', PatientController::class);
+    Route::resource('dates', DateController::class);
+    Route::resource('treatments', TreatmentController::class);
+    Route::resource('diseases', DiseaseController::class);
+
 });

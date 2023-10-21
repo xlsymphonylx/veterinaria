@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('age');
             $table->string('race'); // Assuming 'race' is a string field
             // Add any other fields you need
+            $table->string('profile_image'); // Assuming 'race' is a string field
 
             $table->timestamps();
         });

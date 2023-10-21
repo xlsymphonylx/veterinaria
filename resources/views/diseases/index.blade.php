@@ -5,10 +5,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Pacientes</div>
+                    <div class="card-header">Enfermedades</div>
 
                     <div class="card-body">
-                        <a href="{{ route('patients.create') }}" class="btn btn-primary mb-3">Agregar Nuevo Paciente</a>
+                        <a href="{{ route('diseases.create') }}" class="btn btn-primary mb-3">Agregar Nueva Enfermedad</a>
 
                         @if (session('success'))
                             <div class="alert alert-success" role="alert">
@@ -20,31 +20,28 @@
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>Edad</th>
-                                    <th>Raza</th>
-                                    <th>Imagen</th> <!-- Added a new table heading for the image -->
+                                    <th>Tratamiento</th>
+                                    <th>Paciente</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($patients as $patient)
+                                @foreach ($diseases as $disease)
                                     <tr>
-                                        <td>{{ $patient->name }}</td>
-                                        <td>{{ $patient->age }}</td>
-                                        <td>{{ $patient->race }}</td>
-                                        <td ><img class="img-thumbnail" style="width: 5rem; height: auto;" src="{{ 'profile_images/' . $patient->profile_image}}"
-                                                alt="{{ $patient->name }}"></td>
+                                        <td>{{ $disease->name }}</td>
+                                        <td>{{ $disease->treatment->name }}</td>
+                                        <td>{{ $disease->treatment->patient->name }}</td>
                                         <td>
-                                            <a href="{{ route('patients.show', $patient->id) }}"
+                                            <a href="{{ route('diseases.show', $disease->id) }}"
                                                 class="btn btn-info">Ver</a>
-                                            <a href="{{ route('patients.edit', $patient->id) }}"
+                                            <a href="{{ route('diseases.edit', $disease->id) }}"
                                                 class="btn btn-primary">Editar</a>
-                                            <form action="{{ route('patients.destroy', $patient->id) }}" method="POST"
+                                            <form action="{{ route('diseases.destroy', $disease->id) }}" method="POST"
                                                 style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger"
-                                                    onclick="return confirm('Estas seguro?')">Eliminar</button>
+                                                    onclick="return confirm('¿Estás seguro?')">Eliminar</button>
                                             </form>
                                         </td>
                                     </tr>

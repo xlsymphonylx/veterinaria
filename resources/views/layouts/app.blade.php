@@ -31,7 +31,21 @@
                             <a class="nav-link" href="{{ route('patients.index') }}">{{ __('Pacientes') }}</a>
                         </li>
                     </ul>
-
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('dates.index') }}">{{ __('Citas') }}</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('treatments.index') }}">{{ __('Tratamientos') }}</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('diseases.index') }}">{{ __('Enfermedades') }}</a>
+                        </li>
+                    </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
