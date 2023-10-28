@@ -30,8 +30,9 @@
                             <label class="fw-bold text-light" for="profile_image">Imagen</label>
                             <input type="file" class="form-control fw-bold" id="profile_image" name="profile_image">
                         </div>
-
+                        @can('edit-patients')
                         <a href="{{ route('patients.edit', $patient->id) }}" class="btn fw-bold btn-primary mt-3">Editar</a>
+                        @endcan
                         <a href="{{ route('patients.index') }}" class="btn fw-bold btn-danger mt-3">Regresar</a>
 
                     </div>

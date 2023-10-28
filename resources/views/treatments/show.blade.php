@@ -20,8 +20,9 @@
                             <input type="text" class="form-control fw-bold" id="description" name="description"
                                 placeholder="Ingrese el descripción" value="{{ $treatment->description }}" readonly>
                         </div>
-
+                        @can('edit-treatments')
                         <a href="{{ route('treatments.edit', $treatment->id) }}" class="btn fw-bold btn-primary mt-3">Editar</a>
+                        @endcan
                         <a href="{{ route('treatments.index') }}" class="btn fw-bold btn-danger mt-3">Regresar</a>
 
                     </div>

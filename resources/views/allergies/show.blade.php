@@ -38,7 +38,9 @@
                                 @endforeach
                             </select>
                         </div>
+                        @can('edit-allergies')
                         <a href="{{ route('allergies.edit', $allergy->id) }}" class="btn fw-bold btn-primary mt-3">Editar</a>
+                        @endcan
                         <a href="{{ route('allergies.index') }}" class="btn fw-bold btn-danger mt-3">Regresar</a>
 
                     </div>

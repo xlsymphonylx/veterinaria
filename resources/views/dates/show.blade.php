@@ -38,8 +38,9 @@
                                 @endforeach
                             </select>
                         </div>
-
+                        @can('edit-dates')
                         <a href="{{ route('dates.edit', $date->id) }}" class="btn btn-primary mt-3 fw-bold">Editar</a>
+                        @endcan
                         <a href="{{ route('dates.index') }}" class="btn btn-danger mt-3 fw-bold">Regresar</a>
 
                     </div>
