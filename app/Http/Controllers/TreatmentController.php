@@ -10,21 +10,20 @@ class TreatmentController extends Controller
 {
     public function index()
     {
-        $treatments = Treatment::with('patient')->get(); // Include associated patients
+        $treatments = Treatment::get(); // Include associated patients
         return view('treatments.index', compact('treatments'));
     }
 
     public function create()
     {
-        $patients = Patient::all(); // Include patients for dropdown menu
-        return view('treatments.create', compact('patients'));
+        return view('treatments.create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required',
-            'patient_id' => 'required',
+            'description' => 'required',
         ]);
 
         $treatmentData = $request->all();
@@ -38,24 +37,23 @@ class TreatmentController extends Controller
     public function show($id)
     {
 
-        $treatment = Treatment::with('patient')->find($id); // Include associated patient
-        $patients = Patient::all(); // Include patients for dropdown menu
+        $treatment = Treatment::find($id); // Include associated patient
 
-        return view('treatments.show', compact('treatment', 'patients'));
+        return view('treatments.show', compact('treatment'));
     }
 
     public function edit($id)
     {
-        $treatment = Treatment::with('patient')->find($id); // Include associated patient
-        $patients = Patient::all(); // Include patients for dropdown menu
-        return view('treatments.edit', compact('treatment', 'patients'));
+        $treatment = Treatment::find($id); // Include associated patient
+
+        return view('treatments.edit', compact('treatment'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
-            'patient_id' => 'required',
+            'description' => 'required',
         ]);
 
         $treatment = Treatment::find($id);

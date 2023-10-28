@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AllergyController;
 use App\Http\Controllers\DateController;
 use App\Http\Controllers\DiseaseController;
 use App\Http\Controllers\PatientController;
@@ -29,5 +30,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('dates', DateController::class);
     Route::resource('treatments', TreatmentController::class);
     Route::resource('diseases', DiseaseController::class);
+    Route::resource('allergies', AllergyController::class);
 
 });

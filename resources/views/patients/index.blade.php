@@ -4,11 +4,11 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Pacientes</div>
+                <div class="card auth-bg">
+                    <div class="card-header auth-bg__accent text-light fw-bold">Pacientes</div>
 
                     <div class="card-body">
-                        <a href="{{ route('patients.create') }}" class="btn btn-primary mb-3">Agregar Nuevo Paciente</a>
+                        <a href="{{ route('patients.create') }}" class="btn fw-bold btn-primary mb-3">Agregar Nuevo Paciente</a>
 
                         @if (session('success'))
                             <div class="alert alert-success" role="alert">
@@ -19,31 +19,31 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Nombre</th>
-                                    <th>Edad</th>
-                                    <th>Raza</th>
-                                    <th>Imagen</th> <!-- Added a new table heading for the image -->
-                                    <th>Acciones</th>
+                                    <th class="auth-bg__accent text-light fw-bold">Nombre</th>
+                                    <th class="auth-bg__accent text-light fw-bold">Edad</th>
+                                    <th class="auth-bg__accent text-light fw-bold">Raza</th>
+                                    <th class="auth-bg__accent text-light fw-bold">Imagen</th> <!-- Added a new table heading for the image -->
+                                    <th class="auth-bg__accent text-light fw-bold">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($patients as $patient)
                                     <tr>
-                                        <td>{{ $patient->name }}</td>
-                                        <td>{{ $patient->age }}</td>
-                                        <td>{{ $patient->race }}</td>
-                                        <td ><img class="img-thumbnail" style="width: 5rem; height: auto;" src="{{ 'profile_images/' . $patient->profile_image}}"
+                                        <td class="auth-bg text-light fw-bold">{{ $patient->name }}</td>
+                                        <td class="auth-bg text-light fw-bold">{{ $patient->age }}</td>
+                                        <td class="auth-bg text-light fw-bold">{{ $patient->race }}</td>
+                                        <td class="auth-bg text-light fw-bold"><img class="img-thumbnail" style="width: 5rem; height: auto;" src="{{ 'profile_images/' . $patient->profile_image}}"
                                                 alt="{{ $patient->name }}"></td>
-                                        <td>
+                                        <td class="auth-bg text-light fw-bold">
                                             <a href="{{ route('patients.show', $patient->id) }}"
-                                                class="btn btn-info">Ver</a>
+                                                class="btn fw-bold btn-info">Ver</a>
                                             <a href="{{ route('patients.edit', $patient->id) }}"
-                                                class="btn btn-primary">Editar</a>
+                                                class="btn fw-bold btn-primary">Editar</a>
                                             <form action="{{ route('patients.destroy', $patient->id) }}" method="POST"
                                                 style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger"
+                                                <button type="submit" class="btn fw-bold btn-danger"
                                                     onclick="return confirm('Estas seguro?')">Eliminar</button>
                                             </form>
                                         </td>

@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('treatments', function (Blueprint $table) {
+        Schema::create('allergies', function (Blueprint $table) {
             $table->id();
             $table->string('name'); // Add a 'name' column for the treatment name
-            $table->string('description'); // Add a 'name' column for the treatment name
-
+            $table->unsignedBigInteger('treatment_id')->nullable();
+            $table->foreign('treatment_id')->references('id')->on('treatments')->onDelete('cascade');
+            $table->unsignedBigInteger('patient_id');
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,9 +27,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('treatments', function (Blueprint $table) {
+        Schema::table('allergies', function (Blueprint $table) {
             $table->dropForeign(['patient_id']);
+            $table->dropForeign(['treatment_id']);
         });
-        Schema::dropIfExists('treatments');
+        Schema::dropIfExists('allergies');
     }
 };

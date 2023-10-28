@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('diseases', function (Blueprint $table) {
             $table->id();
             $table->string('name'); // Add a 'name' column for the treatment name
-            $table->unsignedBigInteger('treatment_id');
+            $table->unsignedBigInteger('treatment_id')->nullable();
             $table->foreign('treatment_id')->references('id')->on('treatments')->onDelete('cascade');
+            $table->unsignedBigInteger('patient_id');
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +29,8 @@ return new class extends Migration
     {
         Schema::table('diseases', function (Blueprint $table) {
             $table->dropForeign(['patient_id']);
+            $table->dropForeign(['treatment_id']);
+
         });
         Schema::dropIfExists('diseases');
     }

@@ -5,10 +5,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card auth-bg">
-                    <div class="card-header auth-bg__accent text-light fw-bold">Tratamientos</div>
+                    <div class="card-header auth-bg__accent text-light fw-bold">Alergias</div>
 
                     <div class="card-body">
-                        <a href="{{ route('treatments.create') }}" class="btn fw-bold btn-primary mb-3">Agregar Nueva Tratamiento</a>
+                        <a href="{{ route('allergies.create') }}" class="btn fw-bold btn-primary mb-3">Agregar Nueva Alergia</a>
 
                         @if (session('success'))
                             <div class="alert alert-success" role="alert">
@@ -20,20 +20,23 @@
                             <thead>
                                 <tr>
                                     <th class="auth-bg__accent text-light fw-bold">Nombre</th>
-                                    <th class="auth-bg__accent text-light fw-bold">Descripción</th>
+                                    <th class="auth-bg__accent text-light fw-bold">Tratamiento</th>
+                                    <th class="auth-bg__accent text-light fw-bold">Paciente</th>
                                     <th class="auth-bg__accent text-light fw-bold">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($treatments as $treatment)
+                                @foreach ($allergies as $allergy)
                                     <tr>
-                                        <td class="auth-bg text-light fw-bold">{{ $treatment->name }}</td>
-                                        <td class="auth-bg text-light fw-bold">{{ $treatment->description }}</td>
+                                        <td class="auth-bg text-light fw-bold">{{ $allergy->name }}</td>
+                                        <td class="auth-bg text-light fw-bold">{{ $allergy->treatment->name ?? 'No Seleccionado' }}</td>
+                                        <td class="auth-bg text-light fw-bold">{{ $allergy->patient->name }}</td>
                                         <td class="auth-bg text-light fw-bold">
-                                            <a href="{{ route('treatments.show', $treatment->id) }}" class="btn fw-bold btn-info">Ver</a>
-                                            <a href="{{ route('treatments.edit', $treatment->id) }}"
+                                            <a href="{{ route('allergies.show', $allergy->id) }}"
+                                                class="btn fw-bold btn-info">Ver</a>
+                                            <a href="{{ route('allergies.edit', $allergy->id) }}"
                                                 class="btn fw-bold btn-primary">Editar</a>
-                                            <form action="{{ route('treatments.destroy', $treatment->id) }}" method="POST"
+                                            <form action="{{ route('allergies.destroy', $allergy->id) }}" method="POST"
                                                 style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')

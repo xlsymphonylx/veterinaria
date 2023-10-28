@@ -2,30 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Disease;
+use App\Models\Allergy;
 use App\Models\Patient;
 use App\Models\Treatment;
 use Illuminate\Http\Request;
 
-class DiseaseController extends Controller
+class AllergyController extends Controller
 {
     public function index()
     {
-        $diseases = Disease::with(
-            [
-                'treatment',
-                'patient'
-            ],
-        )->get();
-        return view('diseases.index', compact('diseases'));
+        $allergies = Allergy::with([
+            'treatment',
+            'patient'
+        ],)->get(); // Include associated treatments
+        return view('allergies.index', compact('allergies'));
     }
 
     public function create()
     {
         $treatments = Treatment::all();
         $patients = Patient::all();
-
-        return view('diseases.create', compact('treatments', 'patients'));
+        return view('allergies.create', compact('treatments', 'patients'));
     }
 
     public function store(Request $request)
@@ -36,36 +33,35 @@ class DiseaseController extends Controller
             'patient_id' => 'required',
         ]);
 
-        $diseaseData = $request->all();
-        Disease::create($diseaseData);
+        $allergyData = $request->all();
 
-        return redirect()->route('diseases.index')
-            ->with('success', 'Enfermedad creada exitosamente');
+        Allergy::create($allergyData);
+
+        return redirect()->route('allergies.index')
+            ->with('success', 'Alergia creada exitosamente');
     }
 
     public function show($id)
     {
 
-        $disease = Disease::with([
+        $allergy = Allergy::with([
             'treatment',
             'patient'
         ])->find($id); // Include associated treatment
         $treatments = Treatment::all();
         $patients = Patient::all();
-
-        return view('diseases.show', compact('disease', 'treatments', 'patients'));
+        return view('allergies.show', compact('allergy', 'treatments', 'patients'));
     }
 
     public function edit($id)
     {
-        $disease = Disease::with([
+        $allergy = Allergy::with([
             'treatment',
             'patient'
         ])->find($id); // Include associated treatment
         $treatments = Treatment::all();
         $patients = Patient::all();
-
-        return view('diseases.edit', compact('disease', 'treatments', 'patients'));
+        return view('allergies.edit', compact('allergy', 'treatments', 'patients'));
     }
 
     public function update(Request $request, $id)
@@ -76,19 +72,19 @@ class DiseaseController extends Controller
             'patient_id' => 'required',
         ]);
 
-        $disease = Disease::find($id);
-        $disease->update($request->all());
+        $allergy = Allergy::find($id);
+        $allergy->update($request->all());
 
-        return redirect()->route('diseases.index')
-            ->with('success', 'Enfermedad actualizada exitosamente');
+        return redirect()->route('allergies.index')
+            ->with('success', 'Alergia actualizada exitosamente');
     }
 
     public function destroy($id)
     {
-        $disease = Disease::find($id);
-        $disease->delete();
+        $allergy = Allergy::find($id);
+        $allergy->delete();
 
-        return redirect()->route('diseases.index')
-            ->with('success', 'Enfermedad eliminada exitosamente');
+        return redirect()->route('allergies.index')
+            ->with('success', 'Alergia eliminada exitosamente');
     }
 }
