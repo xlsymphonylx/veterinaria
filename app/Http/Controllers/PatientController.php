@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Support\Facades\Storage; // Add this line at the top
 
 class PatientController extends Controller
@@ -49,7 +50,13 @@ class PatientController extends Controller
         $patient = Patient::find($id);
         return view('patients.show', compact('patient'));
     }
+    public function showPdf($id)
+    {
+        $patient = Patient::with(['diseases', 'allergies'])->find($id);
+        $pdf = PDF::loadView('patients.pdf', compact('patient'));
 
+        return $pdf->stream('patient_info.pdf');
+    }
     public function edit($id)
     {
         $patient = Patient::find($id);

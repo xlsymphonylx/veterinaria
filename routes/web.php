@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('patients/{patient}/edit', [PatientController::class, 'edit'])->middleware(['permission:edit-patients'])->name('patients.edit');
     Route::put('patients/{patient}', [PatientController::class, 'update'])->middleware(['permission:edit-patients'])->name('patients.update');
     Route::delete('patients/{patient}', [PatientController::class, 'destroy'])->middleware(['permission:delete-patients'])->name('patients.destroy');
+    Route::get('patientsPdf/{patient}', [PatientController::class, 'showPdf'])->middleware(['permission:view-patients'])->name('patients.showPdf');
 
     // Dates Routes
     Route::get('dates', [DateController::class, 'index'])->middleware(['permission:view-dates'])->name('dates.index');

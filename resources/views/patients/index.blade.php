@@ -43,6 +43,8 @@
                                     @can('view-dates')
                                     <a href="{{ route('patients.show', $patient->id) }}"
                                         class="btn fw-bold btn-info">Ver</a>
+                                    <a href="{{ route('patients.showPdf', $patient->id) }}"
+                                        class="btn fw-bold btn-warning">PDF</a>
                                     @endcan
                                     @can('edit-dates')
                                     <a href="{{ route('patients.edit', $patient->id) }}"
