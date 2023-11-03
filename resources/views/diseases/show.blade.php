@@ -18,10 +18,10 @@
                     <div class="form-group mt-3">
                         <label class="fw-bold text-light" for="treatment_id">Tratamiento</label>
                         <select class="form-control fw-bold" id="treatment_id" name="treatment_id" readonly>
-                            @foreach ($treatments as $treatment)
                             <option value="" {{ !$disease->treatment_id ? 'selected' : 'disabled' }}>No
                                 seleccionado
                             </option>
+                            @foreach ($treatments as $treatment)
                             <option value="{{ $treatment->id }}" {{ $treatment->id == $disease->treatment_id ?
                                 'selected' : 'disabled' }}>
                                 {{ $treatment->name }}

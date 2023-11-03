@@ -30,9 +30,10 @@
                             <div class="form-group mt-3">
                                 <label class="fw-bold text-light"  for="treatment_id">Tratamiento</label>
                                 <select class="form-control fw-bold" id="treatment_id" name="treatment_id">
+                                    <option value="" {{ !$allergy->treatment_id ? 'selected' : '' }}>No
+                                        seleccionado</option>
                                     @foreach ($treatments as $treatment)
-                                        <option value="" {{ !$allergy->treatment_id ? 'selected' : '' }}>No
-                                            seleccionado</option>
+
                                         <option value="{{ $treatment->id }}"
                                             {{ $treatment->id == $allergy->treatment_id ? 'selected' : '' }}>
                                             {{ $treatment->name }}
