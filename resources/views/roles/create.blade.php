@@ -37,7 +37,7 @@
                                     <br>
                                     @foreach ($permission as $value)
                                     <label class="fw-bold text-light" class="form-control fw-bold">
-                                        <input type="checkbox" name="permission[]" value="{{ $value->id }}">
+                                        <input type="checkbox" name="permission[]" value="{{ $value->name }}">
                                         {{ $value->name }}
                                     </label>
                                     <br>
